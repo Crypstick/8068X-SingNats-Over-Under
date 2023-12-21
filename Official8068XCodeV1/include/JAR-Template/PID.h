@@ -5,9 +5,9 @@ class PID
 {
 public:
   float error = 0;
-  float kp = 1.82; //1.75
+  float kp = 1.75; //1.75
   float ki = 0;
-  float kd = 1.65; //1.6
+  float kd = 1.6; //1.6
   float starti = 15;
   float settle_error = 0;
   float settle_time = 0;

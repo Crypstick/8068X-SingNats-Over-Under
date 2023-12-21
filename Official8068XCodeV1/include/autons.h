@@ -8,6 +8,7 @@ extern Drive chassis;
 void default_constants();
 
 void auton_offensive();
+void skillsAuton();
 void turn_test();
 void swing_test();
 void full_test();
