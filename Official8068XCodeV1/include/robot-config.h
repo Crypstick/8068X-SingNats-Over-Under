@@ -15,6 +15,7 @@ extern motor rollerMotor;
 extern motor cataMotor;
 
 extern digital_out wall_solenoid;
+extern digital_out endgame_solenoid;
 extern inertial inertialSensor;
 extern rotation cataRotationSensor;
 extern controller Remote;

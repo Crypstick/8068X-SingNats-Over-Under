@@ -154,6 +154,7 @@ void usercontrol(void)
     // update your motors, etc.
     // ........................................................................
 
+
     // -- ROLLER MOTOR CODE --- //
     if (Remote.ButtonL1.pressing())
     {
@@ -181,18 +182,36 @@ void usercontrol(void)
         cataMotor.spin(forward);
       }
     }
-    else
-    {
+
+    cataMotor.setVelocity(100, pct);
+    cataMotor.spin(forward);
+    Brain.Screen.printAt(150,100, "rotation sensor angle: %f", (round(cataRotationSensor.angle())));
+
+    if (((cataRotationSensor.angle() - 76) < 10.5) && ((cataRotationSensor.angle() - 76) > 0)) {
       cataMotor.setVelocity(0, pct);
-      cataMotor.stop();
+      cataMotor.stop(); 
     }
 
     // --- PNEUMATIC WINGS CODE --- //
-    if ((Remote.ButtonY.pressing()) == true)
-    {
-      toggle(pneumaticActivationButton);
-      wall_solenoid.set(pneumaticActivationButton);
+    if ((Remote.ButtonY.pressing()) == true) {
+      wall_solenoid.set(true);
       Brain.Screen.printAt(50, 50, "WINGS GO BRRRR");
+      Brain.Screen.printAt(50, 50, "its lookin like: %d", pneumaticActivationButton);
+    }
+
+    if ((Remote.ButtonB.pressing() == true)) {
+      wall_solenoid.set(false);
+      Brain.Screen.printAt(100, 100, "CLOSE THE WINGS BRRRR");
+    }
+
+    // --- ENDGAME + BLOCKER CODE --- //
+    if ((Remote.ButtonUp.pressing()) == true) {
+      endgame_solenoid.set(true);
+      
+    } 
+
+    if ((Remote.ButtonDown.pressing()) == true) {
+      endgame_solenoid.set(false);
     }
 
     // Replace this line with chassis.control_tank(); for tank drive

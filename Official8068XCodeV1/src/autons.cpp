@@ -51,6 +51,7 @@ void auton_offensive()
   rollerMotor.stop();
   rollerMotor.spin(reverse, 100, percent);
   chassis.drive_distance(35, 90, 12, 12, 2, 500, 1000, 1.75, 0, 1.6, 0, 1.75, 0, 1.6, 0);
+  rollerMotor.stop();
   chassis.drive_distance(-10, 90, 0, 0);
   Brain.Screen.printAt(100, 50, "inertial sensor heading: %f", inertialSensor.heading());
 }
@@ -59,17 +60,18 @@ void skillsAuton()
 {
   // when using right_swing_to_angle/left_swing_to_angle: use these values: (angle, speed, 2, 0, 1000, 2.2, 0, 4.2, 0).
   //  when want desired value, -/+10. eg: 90 degree turn, input 80
+
   // move foward to get both alliance triballs into the goal
-  chassis.drive_distance(32, 0, 12, 12);
-  chassis.turn_to_angle(45, 12);
-  chassis.drive_distance(35, 45, 12, 12);
-  chassis.left_swing_to_angle(90, 12, 2, 0, 1000, 2.2, 0, 4.2, 0);
-  chassis.drive_distance(8, 90, 12, 12, 2, 500, 1000, 1.75, 0, 1.6, 0, 1.75, 0, 1.6, 0);
-  wait(2000, msec);
+  chassis.drive_distance(10, 0, 12, 12);
+  chassis.turn_to_angle(-45, 12);
+  chassis.drive_distance(28, -45, 12, 12);
+  rollerMotor.spin(reverse, 100, percent);
+  chassis.drive_distance(12, 0, 12, 12, 2, 500, 1000, 1.75, 0, 1.6, 0, 1.75, 0, 1.6, 0);
+  rollerMotor.stop();
+  
   // return to alliance bar for matchload
-  chassis.drive_distance(-10, 0, 12, 12);
-  chassis.right_swing_to_angle(45);
-  goStraight(100, 100);
+  chassis.drive_distance(-5, 0, 12, 12);
+  chassis.right_swing_to_angle(-45, 12, 2, 0, 1000, 2.2, 0, 4.2, 0);
   // cata matchload code
   for (int i = 0; i < 46;)
   {
@@ -86,6 +88,7 @@ void skillsAuton()
   goStraight(1000, 500);
   chassis.drive_distance(-15, 0, 12, 12);
   goStraight(1000, 500);
+  Brain.Screen.printAt(100, 50, "inertial sensor heading: %f", inertialSensor.heading());
 }
 
 void turn_test()
