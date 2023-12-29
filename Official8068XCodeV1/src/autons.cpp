@@ -66,28 +66,42 @@ void skillsAuton()
   chassis.turn_to_angle(-45, 12);
   chassis.drive_distance(28, -45, 12, 12);
   rollerMotor.spin(reverse, 100, percent);
-  chassis.drive_distance(12, 0, 12, 12, 2, 500, 1000, 1.75, 0, 1.6, 0, 1.75, 0, 1.6, 0);
+  chassis.drive_distance(8, 0, 12, 12, 2, 500, 1000, 1.75, 0, 1.6, 0, 1.75, 0, 1.6, 0);
+  chassis.drive_distance(-5, 0, 12, 12);
+  chassis.drive_distance(5, 0, 12, 12, 2, 500, 1000, 1.75, 0, 1.6, 0, 1.75, 0, 1.6, 0);
   rollerMotor.stop();
-  
   // return to alliance bar for matchload
-  chassis.drive_distance(-5, 0, 12, 12);
-  chassis.right_swing_to_angle(-45, 12, 2, 0, 1000, 2.2, 0, 4.2, 0);
+  chassis.drive_distance(-12, 0, 12, 12, 2, 500, 600, 1.75, 0, 1.6, 0, 1.75, 0, 1.6, 0);
+  chassis.turn_to_angle(-135, 12);
+  chassis.drive_distance(14, -135, 12, 12, 2, 500, 800, 1.75, 0, 1.6, 0, 1.75, 0, 1.6, 0);
+  chassis.right_swing_to_angle(-122, 2, 2, 0, 1000, 2.2, 0, 4.2, 0);
+  chassis.drive_distance(2, -122, 12, 12);
+  wait(2000, msec);
   // cata matchload code
-  for (int i = 0; i < 46;)
-  {
-    // rotation sensor cata code
-  }
-  //  go to otherside to push balls in
-  chassis.drive_distance(-5, 0, 12, 12);
-  chassis.right_swing_to_angle(270);
-  chassis.drive_distance(80, 0, 12, 12);
-  chassis.right_swing_to_angle(120);
-  chassis.drive_distance(50, 120, 12, 12);
-  chassis.left_swing_to_angle(60);
-  // wall_solenoid.set(true)
-  goStraight(1000, 500);
-  chassis.drive_distance(-15, 0, 12, 12);
-  goStraight(1000, 500);
+  // for (int i = 0; i < 46;)
+  //{
+  //  // rotation sensor cata code
+  //}
+  // go to otherside to push balls in
+  chassis.right_swing_to_angle(-45, 2, 2, 0, 1000, 2.2, 0, 4.2, 0);
+  chassis.drive_distance(-20, -45, 12, 12);
+  chassis.turn_to_angle(-90, 12);
+  chassis.drive_distance(-80, -90, 12, 12);
+  wait(1000, msec);
+  chassis.turn_to_angle(-135, 12);
+  wait(1000, msec);
+  chassis.drive_distance(-25, -135, 12, 12);
+  chassis.drive_distance(-17, -180, 12, 12, 2, 500, 1000, 1.75, 0, 1.6, 0, 1.75, 0, 1.6, 0);
+  chassis.drive_distance(5, -180, 12, 12);
+  chassis.drive_distance(-8, -180, 12, 12, 2, 500, 1000, 1.75, 0, 1.6, 0, 1.75, 0, 1.6, 0);
+  chassis.drive_distance(5, -180, 12, 12);
+  chassis.turn_to_angle(90, 12);
+  chassis.drive_distance(-45, 90, 12, 12);
+  chassis.right_swing_to_angle(270, 12, 2, 0, 1000, 2.2, 0, 4.2, 0);
+  wall_solenoid.set(true);
+  chassis.drive_distance(-30, 270, 12, 12, 2, 500, 800, 1.75, 0, 1.6, 0, 1.75, 0, 1.6, 0);
+  chassis.drive_distance(15, 270, 12, 12);
+  chassis.drive_distance(-20, 270, 12, 12, 2, 500, 800, 1.75, 0, 1.6, 0, 1.75, 0, 1.6, 0);
   Brain.Screen.printAt(100, 50, "inertial sensor heading: %f", inertialSensor.heading());
 }
 
