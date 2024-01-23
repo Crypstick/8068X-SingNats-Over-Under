@@ -385,6 +385,17 @@ void Drive::control_arcade(){
   */
 }
 
+void Drive::move_straight(float distance, int speed){
+  rightFrontMotor.spinFor(distance, deg, speed, velocityUnits::pct, false);
+  rightMiddleMotor.spinFor(distance, deg, speed, velocityUnits::pct, false);
+  rightBackMotor.spinFor(distance, deg, speed, velocityUnits::pct, false);
+  leftFrontMotor.spinFor(distance, deg, speed, velocityUnits::pct, false);
+  leftMiddleMotor.spinFor(distance, deg, speed, velocityUnits::pct, false);
+  leftBackMotor.spinFor(distance, deg, speed, velocityUnits::pct, true);
+  // add more
+
+}
+
 void Drive::control_holonomic(){
   float throttle = deadband(controller(primary).Axis3.value(), 5);
   float turn = deadband(controller(primary).Axis1.value(), 5);

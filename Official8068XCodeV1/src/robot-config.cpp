@@ -8,20 +8,20 @@ using code = vision::code;
 brain  Brain;
 
 // VEXcode device constructors
-motor rightFrontMotor = motor(PORT11, ratio6_1, false);
-motor rightMiddleMotor = motor(PORT12, ratio6_1, false);
-motor rightBackMotor = motor(PORT13, ratio6_1, false);
-motor leftFrontMotor = motor(PORT1, ratio6_1, true);
-motor leftMiddleMotor = motor(PORT2, ratio6_1, true);
+motor rightFrontMotor = motor(PORT6, ratio6_1, false);
+motor rightMiddleMotor = motor(PORT7, ratio6_1, false);
+motor rightBackMotor = motor(PORT8, ratio6_1, false);
+motor leftFrontMotor = motor(PORT5, ratio6_1, true);
+motor leftMiddleMotor = motor(PORT4, ratio6_1, true);
 motor leftBackMotor = motor(PORT3, ratio6_1, true);
 
-motor rollerMotor = motor(PORT8, ratio6_1, true);
-motor cataMotor = motor(PORT10, ratio6_1, false);
+motor rollerMotor = motor(PORT11, ratio6_1, true);
+motor cataMotor = motor(PORT12, ratio6_1, false);
 
-digital_out wall_solenoid = digital_out(Brain.ThreeWirePort.E);
-digital_out endgame_solenoid = digital_out(Brain.ThreeWirePort.A);
-inertial inertialSensor = inertial(PORT9);
-rotation cataRotationSensor = rotation(PORT6, false); // to change port number and reverse boolean accordingly 
+digital_out wall_solenoid = digital_out(Brain.ThreeWirePort.H);
+digital_out endgame_solenoid = digital_out(Brain.ThreeWirePort.G);
+inertial inertialSensor = inertial(PORT19);
+rotation cataRotationSensor = rotation(PORT20, false); // to change port number and reverse boolean accordingly 
 
 controller Remote = controller(primary);
 

@@ -196,10 +196,9 @@ void usercontrol(void)
     if ((Remote.ButtonY.pressing()) == true) {
       wall_solenoid.set(true);
       Brain.Screen.printAt(50, 50, "WINGS GO BRRRR");
-      Brain.Screen.printAt(50, 50, "its lookin like: %d", pneumaticActivationButton);
     }
 
-    if ((Remote.ButtonB.pressing() == true)) {
+    if ((Remote.ButtonB.pressing()) == true) {
       wall_solenoid.set(false);
       Brain.Screen.printAt(100, 100, "CLOSE THE WINGS BRRRR");
     }

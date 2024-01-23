@@ -80,7 +80,7 @@ void skillsAuton()
   // cata matchload code
   // for (int i = 0; i < 46;)
   //{
-  //  // rotation sensor cata code
+  //  cataMotor.spinFor(FORWARD, )
   //}
   // go to otherside to push balls in
   chassis.right_swing_to_angle(-45, 2, 2, 0, 1000, 2.2, 0, 4.2, 0);
