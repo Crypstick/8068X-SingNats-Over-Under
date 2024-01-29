@@ -186,12 +186,15 @@ void usercontrol(void)
     cataMotor.setVelocity(100, pct);
     cataMotor.spin(forward);
     Brain.Screen.printAt(150,100, "rotation sensor angle: %f", (round(cataRotationSensor.angle())));
-
-    if (((cataRotationSensor.angle() - 76) < 10.5) && ((cataRotationSensor.angle() - 76) > 0)) {
+    /*
+    if (((cataRotationSensor.angle() - 76) < 10.5
+    ) && ((cataRotationSensor.angle() - 76) > 0)) {
       cataMotor.setVelocity(0, pct);
       cataMotor.stop(); 
     }
+    */
 
+   /* THIS IS WHERE TO SOLVE @JIANAN
     // --- PNEUMATIC WINGS CODE --- //
     if ((Remote.ButtonY.pressing()) == true) {
       wall_solenoid.set(true);
@@ -208,6 +211,9 @@ void usercontrol(void)
       endgame_solenoid.set(true);
       
     } 
+    */
+   
+    
 
     if ((Remote.ButtonDown.pressing()) == true) {
       endgame_solenoid.set(false);

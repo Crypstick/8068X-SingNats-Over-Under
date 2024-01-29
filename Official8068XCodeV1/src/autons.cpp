@@ -18,16 +18,6 @@ void odom_constants()
   chassis.drive_settle_error = 3;
 }
 
-void goStraight(double speed, double distance)
-{
-  leftFrontMotor.spinFor(fwd, distance, degrees, speed, rpm, false);
-  leftMiddleMotor.spinFor(fwd, distance, degrees, speed, rpm, false);
-  leftBackMotor.spinFor(fwd, distance, degrees, speed, rpm, false);
-  rightFrontMotor.spinFor(fwd, distance, degrees, speed, rpm, false);
-  rightMiddleMotor.spinFor(fwd, distance, degrees, speed, rpm, false);
-  rightBackMotor.spinFor(fwd, distance, degrees, speed, rpm, true);
-  wait(200, msec);
-}
 
 void auton_offensive()
 {
@@ -77,11 +67,10 @@ void skillsAuton()
   chassis.right_swing_to_angle(-122, 2, 2, 0, 1000, 2.2, 0, 4.2, 0);
   chassis.drive_distance(2, -122, 12, 12);
   wait(2000, msec);
-  // cata matchload code
-  // for (int i = 0; i < 46;)
-  //{
-  //  cataMotor.spinFor(FORWARD, )
-  //}
+  // cata matchload code (make sure rotation times is correct)
+  for (int i = 0; i < 5; i++) {
+    cataMotor.spinFor(500, rotationUnits::deg);
+  };
   // go to otherside to push balls in
   chassis.right_swing_to_angle(-45, 2, 2, 0, 1000, 2.2, 0, 4.2, 0);
   chassis.drive_distance(-20, -45, 12, 12);
