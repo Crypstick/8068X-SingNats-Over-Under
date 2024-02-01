@@ -18,8 +18,8 @@ motor leftBackMotor = motor(PORT3, ratio6_1, true);
 motor rollerMotor = motor(PORT11, ratio6_1, true);
 motor cataMotor = motor(PORT12, ratio6_1, false);
 
-digital_out wall_solenoid = digital_out(Brain.ThreeWirePort.H);
-digital_out endgame_solenoid = digital_out(Brain.ThreeWirePort.G);
+pwm_out wall_solenoid = pwm_out(Brain.ThreeWirePort.H);
+pwm_out endgame_solenoid = pwm_out(Brain.ThreeWirePort.G);
 inertial inertialSensor = inertial(PORT19);
 rotation cataRotationSensor = rotation(PORT20, false); // to change port number and reverse boolean accordingly 
 

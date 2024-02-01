@@ -1,4 +1,5 @@
 #include "vex.h"
+int cataRotations = 0;
 
 void default_constants()
 {
@@ -31,7 +32,7 @@ void auton_offensive()
   chassis.drive_distance(-10, 90, 12, 12);
   chassis.turn_to_angle(270, 12);
   chassis.drive_distance(18, 270, 12, 12);
-  wall_solenoid.set(true);
+  wall_solenoid.state(255, percentUnits::pct);
   chassis.drive_distance(-20, 270, 12, 12);
   chassis.right_swing_to_angle(230, 8, 2, 0, 1000, 2.2, 0, 4.2, 0);
   rollerMotor.spin(forward, 100, percent);
@@ -42,7 +43,7 @@ void auton_offensive()
   rollerMotor.spin(reverse, 100, percent);
   chassis.drive_distance(35, 90, 12, 12, 2, 500, 1000, 1.75, 0, 1.6, 0, 1.75, 0, 1.6, 0);
   rollerMotor.stop();
-  chassis.drive_distance(-10, 90, 0, 0);
+  chassis.drive_distance(-15, 90, 0, 0);
   Brain.Screen.printAt(100, 50, "inertial sensor heading: %f", inertialSensor.heading());
 }
 
@@ -64,43 +65,47 @@ void skillsAuton()
   chassis.drive_distance(-12, 0, 12, 12, 2, 500, 600, 1.75, 0, 1.6, 0, 1.75, 0, 1.6, 0);
   chassis.turn_to_angle(-135, 12);
   chassis.drive_distance(14, -135, 12, 12, 2, 500, 800, 1.75, 0, 1.6, 0, 1.75, 0, 1.6, 0);
-  chassis.right_swing_to_angle(-122, 2, 2, 0, 1000, 2.2, 0, 4.2, 0);
-  chassis.drive_distance(2, -122, 12, 12);
-  wait(2000, msec);
-  // cata matchload code (make sure rotation times is correct)
-  for (int i = 0; i < 5; i++) {
-    cataMotor.spinFor(500, rotationUnits::deg);
-  };
+  chassis.right_swing_to_angle(-115, 2, 2, 0, 1000, 2.2, 0, 4.2, 0);
+  chassis.drive_distance(2.2, -115 , 12, 12);
+  // cata matchload code
+  // one rotation = 2200deg
+  cataMotor.spinFor(48400, rotationUnits::deg, 150, velocityUnits::pct, true);
   // go to otherside to push balls in
   chassis.right_swing_to_angle(-45, 2, 2, 0, 1000, 2.2, 0, 4.2, 0);
   chassis.drive_distance(-20, -45, 12, 12);
   chassis.turn_to_angle(-90, 12);
   chassis.drive_distance(-80, -90, 12, 12);
-  wait(1000, msec);
+  // pushing triballs in from side of goal
   chassis.turn_to_angle(-135, 12);
-  wait(1000, msec);
   chassis.drive_distance(-25, -135, 12, 12);
   chassis.drive_distance(-17, -180, 12, 12, 2, 500, 1000, 1.75, 0, 1.6, 0, 1.75, 0, 1.6, 0);
-  chassis.drive_distance(5, -180, 12, 12);
-  chassis.drive_distance(-8, -180, 12, 12, 2, 500, 1000, 1.75, 0, 1.6, 0, 1.75, 0, 1.6, 0);
+  // go to middle of field and push triballs in via mouth of goal
   chassis.drive_distance(5, -180, 12, 12);
   chassis.turn_to_angle(90, 12);
-  chassis.drive_distance(-45, 90, 12, 12);
-  chassis.right_swing_to_angle(270, 12, 2, 0, 1000, 2.2, 0, 4.2, 0);
-  wall_solenoid.set(true);
-  chassis.drive_distance(-30, 270, 12, 12, 2, 500, 800, 1.75, 0, 1.6, 0, 1.75, 0, 1.6, 0);
-  chassis.drive_distance(15, 270, 12, 12);
-  chassis.drive_distance(-20, 270, 12, 12, 2, 500, 800, 1.75, 0, 1.6, 0, 1.75, 0, 1.6, 0);
+  chassis.drive_distance(-38, 90, 12, 12);
+  chassis.turn_to_angle(90, 12);
+  chassis.drive_distance(-45, 180, 12, 12);
+  chassis.turn_to_angle(-90, 12);
+  // push triballs into mouth of goal (this is with variation of angles)
+  wall_solenoid.state(255, percentUnits::pct);
+  chassis.drive_distance(-35, 270, 12, 12, 2, 500, 1000, 1.75, 0, 1.6, 0, 1.75, 0, 1.6, 0);
+  chassis.drive_distance(30, 220, 12, 12);
+  chassis.drive_distance(-35, 270, 12, 12, 2, 500, 1000, 1.75, 0, 1.6, 0, 1.75, 0, 1.6, 0);
+  chassis.drive_distance(30, 320, 12, 12);
+  chassis.drive_distance(-35, 270, 12, 12, 2, 500, 1000, 1.75, 0, 1.6, 0, 1.75, 0, 1.6, 0);
+  chassis.drive_distance(10, 270, 12, 12);
   Brain.Screen.printAt(100, 50, "inertial sensor heading: %f", inertialSensor.heading());
 }
 
 void turn_test()
 {
-  chassis.turn_to_angle(5);
-  chassis.turn_to_angle(30);
-  chassis.turn_to_angle(90);
-  chassis.turn_to_angle(225);
-  chassis.turn_to_angle(0);
+  /*
+  while (cataRotations < 10) {
+    cataMotor.spinFor(2200, rotationUnits::deg, 150, velocityUnits::pct, true);
+    cataRotations += 1;
+  };
+  */
+ cataMotor.spinFor(22000, rotationUnits::deg, 150, velocityUnits::pct, true);
 }
 
 void swing_test()

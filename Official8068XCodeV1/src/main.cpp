@@ -38,7 +38,7 @@ Drive chassis(
     motor_group(rightFrontMotor, rightMiddleMotor, rightBackMotor),
 
     // Specify the PORT NUMBER of your inertial sensor, in PORT format (i.e. "PORT1", not simply "1"):
-    PORT9,
+    PORT19,
 
     // Input your wheel diameter. (4" omnis are actually closer to 4.125"):
     3.25,
@@ -176,16 +176,14 @@ void usercontrol(void)
     // --- CATA MOTOR CODE --- //
     if (Remote.ButtonR2.pressing())
     {
-      while ((Remote.ButtonR2.pressing()) == true)
-      {
         cataMotor.setVelocity(100, pct);
         cataMotor.spin(forward);
-      }
+
+    } else {
+      cataMotor.setVelocity(0, pct);
+      cataMotor.stop();
     }
 
-    cataMotor.setVelocity(100, pct);
-    cataMotor.spin(forward);
-    Brain.Screen.printAt(150,100, "rotation sensor angle: %f", (round(cataRotationSensor.angle())));
     /*
     if (((cataRotationSensor.angle() - 76) < 10.5
     ) && ((cataRotationSensor.angle() - 76) > 0)) {
@@ -194,29 +192,26 @@ void usercontrol(void)
     }
     */
 
-   /* THIS IS WHERE TO SOLVE @JIANAN
+
     // --- PNEUMATIC WINGS CODE --- //
     if ((Remote.ButtonY.pressing()) == true) {
-      wall_solenoid.set(true);
+      wall_solenoid.state(255, percentUnits::pct);
       Brain.Screen.printAt(50, 50, "WINGS GO BRRRR");
     }
 
     if ((Remote.ButtonB.pressing()) == true) {
-      wall_solenoid.set(false);
+      wall_solenoid.state(0, percentUnits::pct);
       Brain.Screen.printAt(100, 100, "CLOSE THE WINGS BRRRR");
     }
 
     // --- ENDGAME + BLOCKER CODE --- //
     if ((Remote.ButtonUp.pressing()) == true) {
-      endgame_solenoid.set(true);
+      endgame_solenoid.state(255, percentUnits::pct);
       
     } 
-    */
-   
-    
 
     if ((Remote.ButtonDown.pressing()) == true) {
-      endgame_solenoid.set(false);
+      endgame_solenoid.state(0, percentUnits::pct);
     }
 
     // Replace this line with chassis.control_tank(); for tank drive
